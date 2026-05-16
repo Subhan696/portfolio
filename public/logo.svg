@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#152347"/>
+      <stop offset="100%" stop-color="#0a1226"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e07a93"/>
+      <stop offset="50%" stop-color="#b8294c"/>
+      <stop offset="100%" stop-color="#7a1631"/>
+    </linearGradient>
+    <linearGradient id="hairline" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e07a93" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#e07a93" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#e07a93" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- rounded square background -->
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+
+  <!-- subtle inner glow -->
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="url(#mark)" stroke-opacity="0.35" stroke-width="0.8"/>
+
+  <!-- editorial hairline accent -->
+  <line x1="14" y1="50" x2="50" y2="50" stroke="url(#hairline)" stroke-width="1"/>
+
+  <!-- "S" + "K" stylized monogram -->
+  <g fill="url(#mark)" font-family="Georgia, 'Playfair Display', serif" font-weight="700">
+    <text x="13" y="44" font-size="34" letter-spacing="-1">S</text>
+    <text x="33" y="44" font-size="34" letter-spacing="-1">K</text>
+  </g>
+
+  <!-- top-right accent dot -->
+  <circle cx="52" cy="14" r="2.2" fill="#e07a93"/>
+</svg>

@@ -55,9 +55,6 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     creator: "@your_handle",
   },
-  icons: {
-    icon: "/favicon.svg",
-  },
   robots: { index: true, follow: true },
 };
 

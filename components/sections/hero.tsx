@@ -84,7 +84,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20"
+      className="relative flex min-h-screen min-h-[100svh] items-center justify-center overflow-hidden px-4 pt-24 pb-16 sm:pt-20 sm:pb-20"
     >
       {/* Glow orbs */}
       <div
@@ -149,7 +149,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-5xl font-bold tracking-tight text-ivory sm:text-7xl lg:text-8xl text-balance"
+            className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-ivory sm:text-6xl md:text-7xl lg:text-8xl text-balance"
           >
             Hey, I'm{" "}
             <span className="relative inline-block">
@@ -162,12 +162,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 flex h-12 items-center justify-center gap-2 font-mono text-lg sm:text-2xl text-ivory/80"
+            className="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-mono text-base sm:text-xl md:text-2xl text-ivory/80"
           >
-            <Sparkles className="h-5 w-5 text-wine-600" />
+            <Sparkles className="h-4 w-4 text-wine-600 sm:h-5 sm:w-5" />
             <span className="text-ivory/40">{`>`}</span>
             <span className="min-h-[1.5em]">{role}</span>
-            <span className="inline-block h-6 w-[3px] bg-wine-600 animate-blink" />
+            <span className="inline-block h-5 w-[3px] bg-wine-600 animate-blink sm:h-6" />
           </motion.div>
 
           <motion.p
@@ -185,21 +185,21 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-10 flex flex-wrap items-center justify-center gap-3"
+            className="mt-8 grid w-full max-w-md grid-cols-1 gap-3 sm:mt-10 sm:flex sm:w-auto sm:max-w-none sm:flex-wrap sm:items-center sm:justify-center"
           >
-            <Button asChild variant="accent" size="lg">
+            <Button asChild variant="accent" size="lg" className="w-full sm:w-auto">
               <Link href="#projects">
                 <Sparkles className="h-4 w-4" />
                 View Projects
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
               <a href={siteConfig.resume} download>
                 <Download className="h-4 w-4" />
                 Download Resume
               </a>
             </Button>
-            <Button asChild variant="ghost" size="lg">
+            <Button asChild variant="ghost" size="lg" className="w-full sm:w-auto">
               <Link href="#contact">
                 <Mail className="h-4 w-4" />
                 Contact Me
@@ -221,8 +221,8 @@ export default function Hero() {
             >
               <Github className="h-5 w-5" />
             </Link>
-            <span className="h-4 w-px bg-ivory/10" />
-            <span className="font-mono text-xs text-ivory/40">
+            <span className="hidden h-4 w-px bg-ivory/10 sm:inline-block" />
+            <span className="hidden font-mono text-xs text-ivory/40 sm:inline-flex sm:items-center sm:gap-1">
               press <kbd className="rounded border border-ivory/15 px-1.5 py-0.5">⌘K</kbd> for commands
             </span>
           </motion.div>

@@ -26,7 +26,10 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn("relative py-24 sm:py-32 scroll-mt-24", className)}
+      className={cn(
+        "relative py-16 sm:py-24 lg:py-32 scroll-mt-20 sm:scroll-mt-24",
+        className
+      )}
     >
       <div className={cn("container relative", containerClassName)}>
         {(eyebrow || title || description) && (
@@ -35,7 +38,7 @@ export function Section({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto mb-16 max-w-3xl text-center"
+            className="mx-auto mb-10 max-w-3xl text-center sm:mb-16"
           >
             {eyebrow && (
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-ivory/10 bg-ivory/[0.03] px-3 py-1 text-xs font-medium uppercase tracking-widest text-ivory/70 backdrop-blur">
@@ -44,7 +47,7 @@ export function Section({
               </div>
             )}
             {title && (
-              <h2 className="font-display text-4xl font-bold tracking-tight text-ivory sm:text-5xl text-balance">
+              <h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-ivory sm:text-4xl md:text-5xl text-balance">
                 {title}
               </h2>
             )}

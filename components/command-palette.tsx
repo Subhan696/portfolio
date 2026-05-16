@@ -59,7 +59,7 @@ export default function CommandPaletteProvider({
     <CommandPaletteCtx.Provider value={{ open, setOpen }}>
       {children}
       {open && (
-        <div className="fixed inset-0 z-[200] flex items-start justify-center pt-[15vh]">
+        <div className="fixed inset-0 z-[200] flex items-start justify-center px-4 pt-[12vh] sm:pt-[15vh]">
           <div
             className="absolute inset-0 bg-black/70 backdrop-blur-md animate-in fade-in"
             onClick={() => setOpen(false)}

@@ -77,7 +77,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-3xl border border-ivory/[0.08] bg-ivory/[0.02] p-8 backdrop-blur-xl lg:col-span-1"
+          className="relative overflow-hidden rounded-3xl border border-ivory/[0.08] bg-ivory/[0.02] p-6 backdrop-blur-xl sm:p-8 lg:col-span-1"
         >
           <div className="pointer-events-none absolute -top-1/2 -right-1/2 h-full w-full rounded-full bg-wine-600/10 blur-3xl" />
           <div className="relative">

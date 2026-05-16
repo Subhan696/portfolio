@@ -52,7 +52,7 @@ export default function Experience() {
                     leftSide ? "md:text-right" : "md:col-start-2"
                   }`}
                 >
-                  <div className="inline-block rounded-2xl border border-ivory/[0.08] bg-ivory/[0.02] p-5 backdrop-blur-xl text-left">
+                  <div className="block rounded-2xl border border-ivory/[0.08] bg-ivory/[0.02] p-5 backdrop-blur-xl text-left md:inline-block">
                     <div className="flex flex-wrap items-center gap-2">
                       <Badge variant="accent">{exp.type}</Badge>
                       <span className="font-mono text-xs text-ivory/50">

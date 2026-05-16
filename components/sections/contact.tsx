@@ -140,7 +140,7 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
           onSubmit={handleSubmit(onSubmit)}
-          className="lg:col-span-3 rounded-2xl border border-ivory/[0.08] bg-ivory/[0.02] p-6 backdrop-blur-xl sm:p-8"
+          className="lg:col-span-3 rounded-2xl border border-ivory/[0.08] bg-ivory/[0.02] p-4 backdrop-blur-xl sm:p-6 md:p-8"
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Name" error={errors.name?.message}>
@@ -171,18 +171,18 @@ export default function Contact() {
               />
             </Field>
           </div>
-          <div className="mt-6 flex items-center justify-between">
+          <div className="mt-6 flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs text-ivory/45">
               Or email me at{" "}
               <button
                 type="button"
                 onClick={() => compose()}
-                className="text-wine-300 underline-offset-4 hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-wine-400 rounded"
+                className="break-all text-wine-300 underline-offset-4 hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-wine-400 rounded"
               >
                 {siteConfig.email}
               </button>
             </p>
-            <Button type="submit" variant="accent" disabled={isSubmitting}>
+            <Button type="submit" variant="accent" disabled={isSubmitting} className="w-full sm:w-auto">
               {isSubmitting ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" /> Sending...

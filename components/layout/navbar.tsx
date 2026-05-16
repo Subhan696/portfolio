@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Command, Sparkles } from "lucide-react";
+import { Menu, X, Command } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useCommandPalette } from "@/components/command-palette";
@@ -65,14 +67,23 @@ export default function Navbar() {
           >
             <Link
               href="#hero"
-              className="group flex items-center gap-2 text-ivory"
+              aria-label={`${siteConfig.name} — Home`}
+              className="group flex items-center gap-2.5 text-ivory"
             >
-              <span className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-wine-300 via-wine-600 to-wine-700">
-                <Sparkles className="h-4 w-4 text-ivory" />
-                <span className="absolute inset-0 rounded-lg bg-gradient-to-br from-wine-300 via-wine-600 to-wine-700 opacity-50 blur-md group-hover:opacity-80 transition-opacity" />
+              <span className="relative inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl">
+                <Image
+                  src="/logo.svg"
+                  alt=""
+                  width={36}
+                  height={36}
+                  priority
+                  className="relative z-10 h-9 w-9"
+                />
+                <span className="absolute inset-0 -z-0 rounded-xl bg-gradient-to-br from-wine-400/40 via-wine-600/30 to-wine-900/20 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
               </span>
-              <span className="font-display font-bold tracking-tight">
-                portfolio<span className="text-wine-600">.</span>
+              <span className="hidden font-display text-base font-semibold tracking-tight sm:inline">
+                {siteConfig.name}
+                <span className="text-wine-400">.</span>
               </span>
             </Link>
 

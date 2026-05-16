@@ -28,7 +28,7 @@ export default function Testimonials() {
       }
     >
       <div className="relative mx-auto max-w-3xl">
-        <div className="relative overflow-hidden rounded-3xl border border-ivory/[0.08] bg-ivory/[0.02] p-10 backdrop-blur-xl">
+        <div className="relative overflow-hidden rounded-3xl border border-ivory/[0.08] bg-ivory/[0.02] p-6 backdrop-blur-xl sm:p-10">
           <Quote
             className="pointer-events-none absolute -top-6 -left-6 h-24 w-24 text-wine-600/15"
             aria-hidden

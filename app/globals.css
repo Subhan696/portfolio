@@ -31,11 +31,15 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
     /* Subtle navy → maroon glow lighting */
     background-image:
       radial-gradient(ellipse 80% 60% at 50% -20%, rgba(155, 29, 62, 0.18), transparent 60%),
