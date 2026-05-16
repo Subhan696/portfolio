@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"D:\\\\projects\\\\portfolio\")",
+      "PowerShell(Get-ChildItem -Path \"D:\\\\projects\\\\portfolio\" -Recurse -File | Where-Object { $_.FullName -notmatch 'node_modules|\\\\.next' } | Select-Object -ExpandProperty FullName | ForEach-Object { $_.Replace\\('D:\\\\projects\\\\portfolio\\\\',''\\) } | Sort-Object)"
+    ]
+  }
+}
