@@ -10,6 +10,8 @@ export const siteConfig = {
   github: "https://github.com/Subhan696",
   linkedin: "https://www.linkedin.com/in/subhan-kashif-7a6109375/",
   resume: "/Subhan_Kashif_Resume.pdf",
+  audio: "/audio/song.webm",
+  audioTitle: "Night Blooming Jasmine • fakemink",
   keywords: [
     "AI Engineer",
     "Full Stack Developer",

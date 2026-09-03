@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
 export const revalidate = 3600; // cache 1 hour
 
 const USERNAME = process.env.NEXT_PUBLIC_GITHUB_USERNAME || "octocat";

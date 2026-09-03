@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -11,9 +11,10 @@ import { Button } from "@/components/ui/button";
 import { useCommandPalette } from "@/components/command-palette";
 
 const navItems = [
+  { name: "Capabilities", href: "#capabilities" },
+  { name: "Projects", href: "#projects" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
   { name: "GitHub", href: "#github" },
   { name: "Contact", href: "#contact" },
