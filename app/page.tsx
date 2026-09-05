@@ -11,15 +11,12 @@ import Testimonials from "@/components/sections/testimonials";
 import Blog from "@/components/sections/blog";
 import TechMarquee from "@/components/sections/tech-marquee";
 import Contact from "@/components/sections/contact";
-import { IntroGateway } from "@/components/effects/intro-gateway";
 import { SoundEqualizer } from "@/components/effects/sound-equalizer";
 import { Scroll3DCanvas } from "@/components/effects/scroll-3d-canvas";
 
 export default function HomePage() {
   return (
     <>
-      {/* Interactive LET'S GO Gateway */}
-      <IntroGateway />
 
       {/* Floating Sound Equalizer Controller */}
       <SoundEqualizer />

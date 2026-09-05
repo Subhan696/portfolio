@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
 import { audioEngine } from "@/lib/audio-engine";
@@ -12,13 +11,13 @@ interface IntroGatewayProps {
 
 export function IntroGateway({ onEnter }: IntroGatewayProps) {
   const [isOpen, setIsOpen] = useState(true);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     if (isOpen) {
       document.body.style.overflow = "hidden";
-    }
+    } else {
+      document.body.style.overflow = "unset";
+    };
     return () => {
       document.body.style.overflow = "unset";
     };
@@ -32,9 +31,7 @@ export function IntroGateway({ onEnter }: IntroGatewayProps) {
     onEnter?.();
   };
 
-  if (!mounted) return null;
-
-  return createPortal(
+  return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -73,7 +70,6 @@ export function IntroGateway({ onEnter }: IntroGatewayProps) {
           </div>
         </motion.div>
       )}
-    </AnimatePresence>,
-    document.body
+    </AnimatePresence>
   );
 }

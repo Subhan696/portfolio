@@ -11,6 +11,7 @@ import GridBackground from "@/components/effects/grid-background";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import CommandPaletteProvider from "@/components/command-palette";
+import { IntroGateway } from "@/components/effects/intro-gateway";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -88,6 +89,7 @@ export default function RootLayout({
             <Navbar />
             <main className="relative z-10">{children}</main>
             <Footer />
+            <IntroGateway />
             <Toaster
               position="bottom-right"
               theme="dark"
