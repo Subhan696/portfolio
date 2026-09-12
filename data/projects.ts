@@ -26,7 +26,7 @@ export const projects: Project[] = [
     image:
       "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&q=80",
     github: "https://github.com/Subhan696/Whatsapp-Sales-Agent",
-    demo: "http://56.228.9.238:8000/admin",
+    demo: "https://www.helio.software/",
     highlights: [
       "Stateful multi-turn LangGraph sales workflow",
       "Meta WhatsApp Cloud API integration for automated commerce",
