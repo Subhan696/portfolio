@@ -1,35 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "sonner";
-import CursorGlow from "@/components/effects/cursor-glow";
-import ScrollProgress from "@/components/effects/scroll-progress";
-import ParticleField from "@/components/effects/particle-field";
-import GridBackground from "@/components/effects/grid-background";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
-import CommandPaletteProvider from "@/components/command-palette";
-import { IntroGateway } from "@/components/effects/intro-gateway";
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -60,7 +41,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0f",
+  themeColor: "#121212",
   width: "device-width",
   initialScale: 1,
 };
@@ -72,37 +53,29 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${jetbrains.variable} ${playfair.variable} font-sans noise`}
-      >
+      <body className={`${dmSans.variable} font-sans`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
           disableTransitionOnChange
         >
-          <CommandPaletteProvider>
-            <GridBackground />
-            <ParticleField />
-            <CursorGlow />
-            <ScrollProgress />
+          <div className="mx-auto max-w-xl px-6 lg:px-0 py-10 lg:py-16">
             <Navbar />
-            <main className="relative z-10">{children}</main>
+            <main>{children}</main>
             <Footer />
-            <IntroGateway />
-            <Toaster
-              position="bottom-right"
-              theme="dark"
-              toastOptions={{
-                style: {
-                  background: "rgba(26,18,12,0.92)",
-                  backdropFilter: "blur(12px)",
-                  border: "1px solid rgba(155,29,62,0.30)",
-                  color: "#f5ebd9",
-                },
-              }}
-            />
-          </CommandPaletteProvider>
+          </div>
+          <Toaster
+            position="bottom-right"
+            theme="dark"
+            toastOptions={{
+              style: {
+                background: "#1a1a1a",
+                border: "1px solid rgba(255,255,255,0.1)",
+                color: "#ffffff",
+              },
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>
