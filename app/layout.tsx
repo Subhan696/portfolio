@@ -5,6 +5,8 @@ import { siteConfig } from "@/lib/site";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "sonner";
 import Navbar from "@/components/layout/navbar";
+import { IntroGateway } from "@/components/effects/intro-gateway";
+import { SoundEqualizer } from "@/components/effects/sound-equalizer";
 import Footer from "@/components/layout/footer";
 
 const dmSans = DM_Sans({
@@ -65,6 +67,8 @@ export default function RootLayout({
             <main>{children}</main>
             <Footer />
           </div>
+          <IntroGateway />
+          <SoundEqualizer />
           <Toaster
             position="bottom-right"
             theme="dark"
