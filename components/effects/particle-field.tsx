@@ -12,11 +12,11 @@ type Particle = {
   life: number;
 };
 
-// Maroon + navy palette — wine, rose, steel blue
+// Subtle cyber cyan, violet, and silver starlight palette
 const COLORS = [
-  "rgba(207,76,107,",  // crimson
-  "rgba(224,122,147,", // rose
-  "rgba(61,79,135,",   // steel navy
+  "rgba(56,189,248,",  // cyan/sky
+  "rgba(129,140,248,", // indigo/violet
+  "rgba(226,232,240,", // cosmic silver
 ];
 
 export default function ParticleField() {
@@ -47,18 +47,18 @@ export default function ParticleField() {
     resize();
 
     const count = Math.min(
-      80,
-      Math.floor((window.innerWidth * window.innerHeight) / 22000)
+      65,
+      Math.floor((window.innerWidth * window.innerHeight) / 25000)
     );
 
     particlesRef.current = Array.from({ length: count }, () => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      size: Math.random() * 1.6 + 0.4,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      size: Math.random() * 1.5 + 0.5,
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
-      life: Math.random(),
+      life: Math.random() * Math.PI * 2,
     }));
 
     const tick = () => {
@@ -69,8 +69,8 @@ export default function ParticleField() {
         const p = ps[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.life += 0.005;
-        const alpha = 0.4 + Math.sin(p.life) * 0.3;
+        p.life += 0.008;
+        const alpha = 0.25 + Math.sin(p.life) * 0.2;
 
         if (p.x < 0) p.x = window.innerWidth;
         if (p.x > window.innerWidth) p.x = 0;
@@ -78,20 +78,20 @@ export default function ParticleField() {
         if (p.y > window.innerHeight) p.y = 0;
 
         ctx.beginPath();
-        ctx.fillStyle = `${p.color}${alpha})`;
+        ctx.fillStyle = `${p.color}${Math.max(0.05, alpha)})`;
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      // Connect nearby
+      // Connect nearby particles with subtle filament lines
       for (let i = 0; i < ps.length; i++) {
         for (let j = i + 1; j < ps.length; j++) {
           const dx = ps[i].x - ps[j].x;
           const dy = ps[i].y - ps[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 110) {
+          if (dist < 100) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(207,76,107,${0.07 * (1 - dist / 110)})`;
+            ctx.strokeStyle = `rgba(56,189,248,${0.05 * (1 - dist / 100)})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(ps[i].x, ps[i].y);
             ctx.lineTo(ps[j].x, ps[j].y);
@@ -116,7 +116,7 @@ export default function ParticleField() {
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-0 opacity-50"
+      className="pointer-events-none fixed inset-0 z-0 opacity-40"
     />
   );
 }

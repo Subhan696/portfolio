@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion, useScroll, useSpring } from "framer-motion";
 
@@ -12,7 +12,7 @@ export default function ScrollProgress() {
 
   return (
     <motion.div
-      className="fixed left-0 top-0 z-[60] h-[2px] w-full origin-left bg-gradient-to-r from-wine-300 via-wine-600 to-wine-700"
+      className="fixed left-0 top-0 z-[100] h-[3px] w-full origin-left bg-gradient-to-r from-sky-400 via-cyan-400 to-indigo-500 shadow-[0_0_14px_rgba(56,189,248,0.9)]"
       style={{ scaleX }}
     />
   );

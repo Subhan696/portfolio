@@ -1,17 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "sonner";
 import Navbar from "@/components/layout/navbar";
-import { IntroGateway } from "@/components/effects/intro-gateway";
-import { SoundEqualizer } from "@/components/effects/sound-equalizer";
 import Footer from "@/components/layout/footer";
+import ScrollProgress from "@/components/effects/scroll-progress";
+import ParticleField from "@/components/effects/particle-field";
+import { SoundEqualizer } from "@/components/effects/sound-equalizer";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -37,13 +44,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} — ${siteConfig.title}`,
     description: siteConfig.description,
-    creator: "@your_handle",
   },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#121212",
+  themeColor: "#08090D",
   width: "device-width",
   initialScale: 1,
 };
@@ -55,28 +61,45 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${dmSans.variable} font-sans`}>
+      <body
+        className={`${dmSans.variable} ${jetbrainsMono.variable} font-sans min-h-screen bg-[#08090D] text-white antialiased selection:bg-sky-500/30 selection:text-sky-200`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
           disableTransitionOnChange
         >
-          <div className="mx-auto max-w-xl px-6 lg:px-0 py-10 lg:py-16">
-            <Navbar />
-            <main>{children}</main>
+          {/* Scroll Progress Indicator Effect */}
+          <ScrollProgress />
+
+          {/* Dynamic Ambient Particle Background */}
+          <ParticleField />
+
+          {/* Ambient Top Light Beam */}
+          <div className="pointer-events-none fixed inset-x-0 -top-40 z-0 h-96 bg-[radial-gradient(ellipse_at_top,rgba(56,189,248,0.08),transparent_70%)]" />
+
+          {/* Main Content Container with comfortable reading width */}
+          <div className="relative z-10 mx-auto max-w-5xl px-5 sm:px-8 py-4 sm:py-6 min-h-screen flex flex-col justify-between">
+            <div>
+              <Navbar />
+              <main>{children}</main>
+            </div>
             <Footer />
           </div>
-          <IntroGateway />
+
           <SoundEqualizer />
+
           <Toaster
             position="bottom-right"
             theme="dark"
             toastOptions={{
               style: {
-                background: "#1a1a1a",
-                border: "1px solid rgba(255,255,255,0.1)",
-                color: "#ffffff",
+                background: "#0E1320",
+                border: "1px solid rgba(56,189,248,0.2)",
+                color: "#F8FAFC",
+                fontFamily: "var(--font-mono), monospace",
+                fontSize: "12px",
               },
             }}
           />

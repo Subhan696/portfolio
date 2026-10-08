@@ -1,30 +1,53 @@
 export type EducationItem = {
   degree: string;
-  school: string;
+  institution: string;
+  school?: string;
   period: string;
-  description: string;
-  coursework: string[];
+  grade?: string;
+  coursework?: string[];
+  description?: string;
 };
 
-export const education: EducationItem[] = [
+export const educationHistory: EducationItem[] = [
   {
-    degree: "BS Computer Science",
-    school: "COMSATS University",
-    period: "2022 — 2026",
-    description:
-      "Focused on artificial intelligence and full-stack web development. Strong foundation in algorithms, systems, and applied ML.",
+    degree: "B.S. Computer Science",
+    institution: "COMSATS University Islamabad, Lahore",
+    school: "COMSATS University Islamabad, Lahore",
+    period: "Sep 2022 — Jun 2026",
+    grade: "CGPA 3.12",
     coursework: [
       "Artificial Intelligence",
-      "Deep Learning",
-      "Computer Vision",
-      "Web Development",
-      "Parallel Computing",
       "Data Structures & Algorithms",
+      "Object-Oriented Programming (OOP)",
       "Database Systems",
+      "Software Engineering",
+      "Web Technologies",
       "Operating Systems",
     ],
+    description:
+      "Core focus on artificial intelligence, algorithmic design, machine learning pipelines, and distributed software engineering.",
+  },
+  {
+    degree: "Intermediate (FSc), Pre-Engineering",
+    institution: "FC College, Lahore",
+    school: "FC College, Lahore",
+    period: "Sep 2020 — Jun 2022",
+    grade: "Grade A",
+    description:
+      "Advanced mathematics, analytical physics, and chemistry foundation.",
+  },
+  {
+    degree: "Matriculation, Science",
+    institution: "The Educators School, Lahore",
+    school: "The Educators School, Lahore",
+    period: "Apr 2018 — Jun 2020",
+    grade: "Grade A*",
+    description:
+      "Distinction in science and foundational computer science fundamentals.",
   },
 ];
+
+export const education = educationHistory;
 
 export type Certification = {
   name: string;
@@ -46,13 +69,8 @@ export const certifications: Certification[] = [
   },
   {
     name: "Full Stack Web Development",
-    issuer: "Self-paced",
+    issuer: "Meta / Coursera",
     date: "2023",
-  },
-  {
-    name: "Computer Vision Nanodegree",
-    issuer: "Udacity",
-    date: "2024",
   },
 ];
 
@@ -65,17 +83,12 @@ export type Achievement = {
 export const achievements: Achievement[] = [
   {
     title: "Open Source Contributor",
-    description: "Active contributor to AI / web open-source projects.",
+    description: "Active contributor to AI and web repositories.",
     year: "2024",
   },
   {
     title: "Hackathon Finalist",
-    description: "Top 10 finalist in a national AI hackathon.",
+    description: "Finalist in university AI solutions sprint.",
     year: "2024",
-  },
-  {
-    title: "Top of Class",
-    description: "Consistently top performer in CS coursework.",
-    year: "2023",
   },
 ];

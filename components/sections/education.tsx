@@ -1,10 +1,10 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { GraduationCap, BookOpen } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { Badge } from "@/components/ui/badge";
-import { education } from "@/data/education";
+import { educationHistory } from "@/data/education";
 
 export default function Education() {
   return (
@@ -19,7 +19,7 @@ export default function Education() {
       description="Formal study in computer science, with deep focus on AI and web development."
     >
       <div className="grid gap-6 lg:grid-cols-2">
-        {education.map((e, i) => (
+        {educationHistory.map((e, i: number) => (
           <motion.div
             key={e.degree}
             initial={{ opacity: 0, y: 30 }}
@@ -38,21 +38,25 @@ export default function Education() {
                   <h3 className="font-display text-xl font-semibold text-ivory">
                     {e.degree}
                   </h3>
-                  <p className="text-sm text-wine-300">{e.school}</p>
+                  <p className="text-sm text-wine-300">{e.institution}</p>
                   <p className="font-mono text-xs text-ivory/45">{e.period}</p>
                 </div>
               </div>
-              <p className="mt-4 text-sm text-ivory/65">{e.description}</p>
-              <div className="mt-5">
-                <p className="flex items-center gap-2 text-xs uppercase tracking-widest text-ivory/45">
-                  <BookOpen className="h-3.5 w-3.5" /> Relevant coursework
-                </p>
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {e.coursework.map((c) => (
-                    <Badge key={c}>{c}</Badge>
-                  ))}
+              {e.description && (
+                <p className="mt-4 text-sm text-ivory/65">{e.description}</p>
+              )}
+              {e.coursework && e.coursework.length > 0 && (
+                <div className="mt-5">
+                  <p className="flex items-center gap-2 text-xs uppercase tracking-widest text-ivory/45">
+                    <BookOpen className="h-3.5 w-3.5" /> Relevant coursework
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {e.coursework.map((c: string) => (
+                      <Badge key={c}>{c}</Badge>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </motion.div>
         ))}

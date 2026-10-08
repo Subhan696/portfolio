@@ -1,9 +1,9 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { Award, Trophy, BadgeCheck } from "lucide-react";
 import { Section } from "@/components/ui/section";
-import { certifications, achievements } from "@/data/education";
+import { certifications, achievements, type Certification, type Achievement } from "@/data/education";
 
 export default function Certifications() {
   return (
@@ -24,7 +24,7 @@ export default function Certifications() {
             <BadgeCheck className="h-5 w-5 text-wine-300" /> Certifications
           </h3>
           <div className="grid gap-3 sm:grid-cols-2">
-            {certifications.map((c, i) => (
+            {certifications.map((c: Certification, i: number) => (
               <motion.div
                 key={c.name}
                 initial={{ opacity: 0, y: 20 }}
@@ -54,7 +54,7 @@ export default function Certifications() {
             <Trophy className="h-5 w-5 text-wine-700" /> Achievements
           </h3>
           <div className="space-y-3">
-            {achievements.map((a, i) => (
+            {achievements.map((a: Achievement, i: number) => (
               <motion.div
                 key={a.title}
                 initial={{ opacity: 0, x: 20 }}
