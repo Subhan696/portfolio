@@ -1,4 +1,5 @@
 import { profile as FALLBACK_PROFILE } from '@/data/profile'
+import { experiences } from '@/data/experience'
 import { getProjects } from '@/lib/projects'
 import { GithubGraph } from '@/components/GithubGraph'
 import { TechStack } from '@/components/TechStack'
@@ -50,66 +51,38 @@ export default async function Home() {
         <section id="experience" className="mb-12 pt-0 pb-6">
           <h2 className="font-serif text-2xl md:text-3xl mb-8 tracking-tight">Experience</h2>
           <div className="space-y-12">
-            <ExperienceItem
-              title="Digimark Developers"
-              role="AI/ML Engineer — Lahore, Pakistan (Jul 2025 — Apr 2026)"
-              collapsible={true}
-            >
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Started as an AI/ML Intern and transitioned into an Associate AI/ML Engineer role, focusing on retrieval-augmented generation (RAG) pipelines, workflow automation, FastAPI backend development, and predictive modeling.
-              </p>
-              
-              <dl className="space-y-6">
-                <div>
-                  <dt className="font-semibold text-black dark:text-white text-sm mb-1">
-                    Associate AI/ML Engineer <span className="text-xs text-gray-400 dark:text-gray-500 font-mono font-normal ml-1">(Dec 2025 — Apr 2026)</span>
-                  </dt>
-                  <dd className="text-gray-500 dark:text-gray-400 text-sm pl-4 border-l border-gray-200 dark:border-gray-800">
-                    <ul className="list-disc space-y-2 pl-4">
-                      <li>
-                        Architected Retrieval-Augmented Generation (RAG) pipelines and integrated observability frameworks to monitor LLM performance, track token usage, and reduce response latency.
-                      </li>
-                      <li>
-                        Designed and deployed N8N automation workflows and voice agents using VAPI, connecting third-party APIs to streamline business processes, automate customer calls, and eliminate operational bottlenecks.
-                      </li>
-                      <li>
-                        Implemented Twilio and VAPI SDKs with FastAPI for integrated communication solutions.
-                      </li>
-                    </ul>
-                  </dd>
-                </div>
+            {experiences.map((exp) => (
+              <ExperienceItem
+                key={`${exp.company}-${exp.period}`}
+                title={exp.company}
+                role={`${exp.role} — ${exp.location} (${exp.period})`}
+                collapsible={true}
+              >
+                <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
+                  {exp.description}
+                </p>
 
-                <div>
-                  <dt className="font-semibold text-black dark:text-white text-sm mb-1">
-                    AI/ML Intern <span className="text-xs text-gray-400 dark:text-gray-500 font-mono font-normal ml-1">(Jul 2025 — Dec 2025)</span>
-                  </dt>
-                  <dd className="text-gray-500 dark:text-gray-400 text-sm pl-4 border-l border-gray-200 dark:border-gray-800">
-                    <ul className="list-disc space-y-2 pl-4">
-                      <li>
-                        Collaborated with clients to engineer effective workflows, ensuring alignment with project goals.
-                      </li>
-                      <li>
-                        Trained and evaluated classification models for sentiment analysis and computer vision tasks, enhancing predictive accuracy.
-                      </li>
-                    </ul>
-                  </dd>
-                </div>
-              </dl>
+                <ul className="list-disc space-y-2 pl-4 text-gray-500 dark:text-gray-400 text-sm mb-4">
+                  {exp.highlights.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
 
-              <div className="mt-6 flex flex-wrap gap-2">
-                {["FastAPI", "RAG", "N8N", "LangChain", "LangSmith", "VAPI", "Twilio", "Machine Learning", "Deep Learning", "Agentic AI"].map((tech) => (
-                  <HoverBorderGradient
-                    key={tech}
-                    as="span"
-                    containerClassName="rounded-full"
-                    className="px-2 py-0.5 text-[10px] font-mono"
-                    duration={1.5}
-                  >
-                    {tech}
-                  </HoverBorderGradient>
-                ))}
-              </div>
-            </ExperienceItem>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {exp.skills.map((tech) => (
+                    <HoverBorderGradient
+                      key={tech}
+                      as="span"
+                      containerClassName="rounded-full"
+                      className="px-2 py-0.5 text-[10px] font-mono"
+                      duration={1.5}
+                    >
+                      {tech}
+                    </HoverBorderGradient>
+                  ))}
+                </div>
+              </ExperienceItem>
+            ))}
           </div>
         </section>
       </ScrollAnimation>
