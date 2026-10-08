@@ -11,6 +11,7 @@ import './globals.css'
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-sans',
   display: 'swap',
 })
@@ -25,11 +26,12 @@ const signifier = localFont({
   ],
   variable: '--font-serif',
   display: 'swap',
+  fallback: ['ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
 })
 
 export const metadata: Metadata = {
-  title: 'Subhan Kashif',
-  description: 'Personal portfolio of Subhan Kashif — AI Engineer & Full Stack Developer',
+  title: 'Subhan Kashif — AI Engineer & Full Stack Developer',
+  description: 'Personal portfolio of Subhan Kashif — Building intelligent systems for language, automation, and the web.',
   icons: {
     icon: '/favicon.ico',
   },
@@ -41,13 +43,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${dmSans.variable} ${signifier.variable} font-sans antialiased bg-white dark:bg-black text-black dark:text-white`}>
+    <html lang="en" className="dark" style={{ colorScheme: 'dark' }} suppressHydrationWarning>
+      <body className={`${dmSans.variable} ${signifier.variable} font-sans antialiased bg-black text-white dark:bg-black dark:text-white`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           {/* Let's Go Interactive Intro Gateway */}
           <IntroGateway />
 
-          <div className="selection:bg-black dark:selection:bg-white selection:text-white dark:selection:text-black">
+          <div className="selection:bg-white selection:text-black dark:selection:bg-white dark:selection:text-black">
             <SmoothScroll />
             <AutoScroll />
             <div className="w-full md:w-[50%] min-h-screen flex flex-col p-6 lg:p-12 relative mx-auto">

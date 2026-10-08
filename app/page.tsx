@@ -15,7 +15,7 @@ export default async function Home() {
   const projects = await getProjects()
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black text-black dark:text-white selection:bg-black dark:selection:bg-white selection:text-white dark:selection:text-black">
+    <main className="min-h-screen bg-black text-white dark:bg-black dark:text-white selection:bg-white selection:text-black">
       <ScrollAnimation delay={0} animation="fade-up">
         <section className="mb-12 flex flex-col justify-center mt-2">
           <div className="max-w-xl">

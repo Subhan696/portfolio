@@ -28,7 +28,7 @@ export function GithubGraph() {
     useEffect(() => {
         const id = window.setTimeout(() => setMounted(true), 0);
 
-        fetch(`https://github-contributions-api.jogruber.de/v4/Subhan696`)
+        fetch(`https://github-contributions-api.jogruber.de/v4/Subhan696?y=last`)
             .then(res => res.json())
             .then(json => {
                 if (json.contributions) {
@@ -39,6 +39,12 @@ export function GithubGraph() {
 
         return () => window.clearTimeout(id);
     }, []);
+
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+        }
+    }, [data, mounted]);
 
     useEffect(() => {
         if (!mounted || data.length === 0) return;

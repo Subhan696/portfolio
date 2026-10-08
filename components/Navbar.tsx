@@ -34,17 +34,9 @@ export function Navbar() {
     }
   }
 
-  const isQuotesPage = pathname === '/quotes'
   const getLinkClass = (isActive: boolean) => isActive 
     ? "cursor-pointer underline underline-offset-8 hover:decoration-2 decoration-2 hover:decoration-black dark:hover:decoration-white hover:text-black dark:hover:text-white transition-colors"
     : "cursor-pointer underline underline-offset-8 hover:decoration-2 hover:decoration-black/50 hover:text-black/70 dark:hover:text-white transition-colors"
-
-  const handleQuotesClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (pathname === '/quotes') {
-      e.preventDefault()
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-  }
 
   return (
     <header className="-mx-6 -mt-6 mb-10 flex flex-col gap-5 bg-transparent px-6 pt-4 pb-3 lg:-mx-12 lg:-mt-12 lg:px-12 lg:pt-6 lg:pb-4">
@@ -61,12 +53,11 @@ export function Navbar() {
         </div>
       </div>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-mono">
-        <a href={buildSectionPath()} onClick={(e) => handleScroll(e, 'top', buildSectionPath())} className={getLinkClass(!isQuotesPage)}>Home</a>
+        <a href={buildSectionPath()} onClick={(e) => handleScroll(e, 'top', buildSectionPath())} className={getLinkClass(pathname === '/')}>Home</a>
         <a href={buildSectionPath('projects')} onClick={(e) => handleScroll(e, 'projects', buildSectionPath('projects'))} className={getLinkClass(false)}>Projects</a>
         <a href={buildSectionPath('experience')} onClick={(e) => handleScroll(e, 'experience', buildSectionPath('experience'))} className={getLinkClass(false)}>Experience</a>
         <a href={buildSectionPath('contact')} onClick={(e) => handleScroll(e, 'contact', buildSectionPath('contact'))} className={getLinkClass(false)}>Contact</a>
         <a href={buildSectionPath('resume')} onClick={(e) => handleScroll(e, 'resume', buildSectionPath('resume'))} className={getLinkClass(false)}>Resume</a>
-        <Link href="/quotes" onClick={handleQuotesClick} className={getLinkClass(isQuotesPage)}>Quotes</Link>
       </div>
     </header>
   )
