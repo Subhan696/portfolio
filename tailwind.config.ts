@@ -17,8 +17,9 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Playfair Display", "Georgia", "serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
-        display: ["var(--font-display)", "serif"],
+        display: ["var(--font-serif)", "Playfair Display", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -50,59 +51,38 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Deep navy — the base canvas
-        ink: {
-          950: "#050912", // deepest void
-          900: "#0a1226", // midnight (page bg)
-          800: "#0f1a35", // card bg
-          700: "#152347", // navy
-          600: "#1f2d56", // muted navy
-          500: "#2a3a6b", // steel
-          400: "#3d4f87", // light steel
+        // Luxury Obsidian & Velvet Canvas
+        obsidian: {
+          950: "#06070B",
+          900: "#0A0C11",
+          850: "#0E1118",
+          800: "#131722",
+          750: "#171C2A",
+          700: "#1E2436",
+          600: "#2B334B",
+          500: "#3E4968",
         },
-        // Maroon / wine spectrum
-        wine: {
-          950: "#2a060f",
-          900: "#3d0a18",
-          800: "#5c0f24",
-          700: "#7a1631",
-          600: "#9b1d3e",
-          500: "#b8294c",
-          400: "#cf4c6b",
-          300: "#e07a93",
-          200: "#eba9b8",
-          100: "#f5d7de",
+        // Brushed Champagne Gold & Titanium Palette
+        gold: {
+          50: "#FDFCF8",
+          100: "#FAF6EB",
+          200: "#F4EBD4",
+          300: "#EEDFBA",
+          400: "#E6D09A",
+          500: "#E5C378", // Champagne Gold
+          600: "#D4AF37", // Pure Gold
+          700: "#B8922C",
+          800: "#8C6E20",
+          900: "#5F4914",
         },
-        // Liquid Chrome & Cosmic Silver Palette (Silver Surfer Aesthetic)
-        silver: {
-          50: "#FAFCFD",
-          100: "#F0F4F8",
-          200: "#D9E2EC",
-          300: "#BCCCDC",
-          400: "#9FB3C8",
-          500: "#829AB1",
-          600: "#627D98",
-          700: "#486581",
-          800: "#334E68",
-          900: "#102A43",
-          chrome: "#E2E8F0",
-          bright: "#FFFFFF",
-          metallic: "#CBD5E1",
-          dark: "#0F172A",
+        champagne: {
+          light: "#FFF8EA",
+          DEFAULT: "#E5C378",
+          dark: "#B8922C",
+          muted: "#C5B28B",
         },
-        // Prismatica Cyber Neon Palette
-        cyber: {
-          magenta: "#E2E8F0",
-          hotpink: "#FFFFFF",
-          violet: "#94A3B8",
-          purple: "#64748B",
-          cyan: "#38BDF8",
-          dark: "#000000",
-          card: "#05070B",
-        },
-        // Off-white text — slightly warm for elegance
-        ivory: "#F8FAFC",
-        parchment: "#E2E8F0",
+        ivory: "#F7F7F9",
+        parchment: "#EAE7DF",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -110,12 +90,12 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {
+        "luxury-gradient":
+          "linear-gradient(135deg, #FFF9ED 0%, #E5C378 50%, #C5A880 100%)",
+        "gold-shimmer":
+          "linear-gradient(90deg, rgba(229,195,120,0) 0%, rgba(229,195,120,0.3) 50%, rgba(229,195,120,0) 100%)",
         "grid-pattern":
-          "radial-gradient(circle at center, rgba(255,255,255,0.08) 1px, transparent 1px)",
-        "chrome-gradient":
-          "linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 35%, #64748B 70%, #F1F5F9 100%)",
-        "glow-radial":
-          "radial-gradient(circle at center, rgba(226,232,240,0.25), transparent 70%)",
+          "radial-gradient(circle at center, rgba(229,195,120,0.06) 1px, transparent 1px)",
       },
       keyframes: {
         "fade-in": {
@@ -128,31 +108,15 @@ const config: Config = {
         },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+          "50%": { transform: "translateY(-8px)" },
         },
         "spin-slow": {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" },
         },
-        "pulse-glow": {
-          "0%, 100%": { opacity: "0.4", transform: "scale(0.98)" },
-          "50%": { opacity: "1", transform: "scale(1.02)" },
-        },
-        "gradient-x": {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-        },
         marquee: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
-        },
-        blink: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0" },
-        },
-        radar: {
-          "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" },
         },
         equalizer: {
           "0%, 100%": { height: "4px" },
@@ -161,14 +125,10 @@ const config: Config = {
       },
       animation: {
         "fade-in": "fade-in 0.5s ease-out",
-        shimmer: "shimmer 2s linear infinite",
+        shimmer: "shimmer 2.5s linear infinite",
         float: "float 6s ease-in-out infinite",
         "spin-slow": "spin-slow 20s linear infinite",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        "gradient-x": "gradient-x 4s ease infinite",
-        marquee: "marquee 30s linear infinite",
-        blink: "blink 1s step-end infinite",
-        radar: "radar 4s linear infinite",
+        marquee: "marquee 32s linear infinite",
         equalizer: "equalizer 1.2s ease-in-out infinite",
       },
     },
