@@ -1,197 +1,106 @@
-export type ProjectCategory = "AI" | "Web" | "Full Stack" | "Systems";
-
-export type Project = {
-  slug: string;
+export interface ProjectSection {
   title: string;
-  summary: string;
+  items: string[];
+  imageUrl?: string;
+}
+
+export interface Project {
+  _id: string;
+  title: string;
+  slug: string;
   description: string;
-  category: ProjectCategory[];
-  tech: string[];
-  image: string;
-  github?: string;
-  demo?: string;
-  highlights: string[];
-  period: string;
-  featured?: boolean;
-};
+  projectUrl?: string;
+  githubUrl?: string;
+  technologies: string[];
+  imageUrl?: string;
+  features?: string[];
+  detailSections?: ProjectSection[];
+  challenges?: string[];
+  lessons?: string[];
+}
 
 export const projects: Project[] = [
   {
-    slug: "whatsapp-ai-sales-agent",
-    title: "WhatsApp Business AI Sales Agent & CRM",
-    summary:
-      "Autonomous conversational WhatsApp sales agent with LangGraph cyclic state graph and full-stack CRM dashboard.",
-    description:
-      "Autonomous sales and commerce agent operating on the Meta WhatsApp Cloud API. Handles real-time product discovery, instant pricing calculations, automated Cash-On-Delivery and bank-transfer checkout, and anti-hallucination guardrails via a cyclic LangGraph state machine with PostgreSQL checkpointing. Accompanied by a mobile-responsive CRM dashboard for live chat monitoring, order management, and lead lifecycle tracking.",
-    category: ["AI", "Full Stack"],
-    tech: [
-      "Python",
-      "FastAPI",
-      "LangGraph",
-      "LangChain",
-      "PostgreSQL",
-      "Node.js",
-      "Docker Compose",
-      "Nginx",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&q=80",
-    github: "https://github.com/Subhan696/Whatsapp-Sales-Agent",
-    period: "June 2026",
-    highlights: [
-      "Cyclic LangGraph agent with PostgreSQL checkpointer and tool calling",
-      "End-to-end checkout flow supporting COD & bank verification",
-      "Mobile-responsive CRM dashboard with real-time order lifecycle tracking",
-      "Dockerized FastAPI & Node.js bridge with SSL via Nginx & Certbot",
-    ],
-    featured: true,
-  },
-  {
+    _id: "1",
+    title: "GradeWave",
     slug: "gradewave",
-    title: "GradeWave — Smart Teacher Assistance (FYP)",
-    summary:
-      "AI grading platform automating quiz generation, rubric-based short-answer scoring, and cosine plagiarism detection.",
-    description:
-      "Final year project built by a 3-person team automating teacher workflows. Features an end-to-end RAG pipeline using LangChain, OpenAI embeddings, and Pinecone for automated syllabus-grounded quiz generation, a GPT-4o rubric-based grader for short answers, and cosine-similarity vector plagiarism analysis across student submissions. Unified FastAPI backend serving both a React+TypeScript web portal and an Expo React Native mobile application.",
-    category: ["AI", "Full Stack", "Web"],
-    tech: [
-      "React",
-      "React Native (Expo)",
-      "FastAPI",
-      "PostgreSQL",
-      "LangChain",
-      "OpenAI GPT-4o",
-      "Pinecone",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80",
-    github: "https://github.com/Subhan696/GradeWave",
-    period: "Jul 2025 — May 2026",
-    highlights: [
-      "RAG pipeline (LangChain, OpenAI embeddings, Pinecone) for syllabus quiz creation",
-      "GPT-4o rubric-driven short-answer evaluator with contextual feedback",
-      "Vector cosine-similarity engine detecting inter-submission plagiarism",
-      "Cross-platform support: React web app + React Native (Expo) mobile app",
-    ],
-    featured: true,
+    description: "An AI-assisted grading and feedback platform built with FastAPI, React, Expo React Native, Celery, Redis, and RAG workflows.",
+    githubUrl: "https://github.com/sikandermukhtar/gradewave-final",
+    technologies: ["FastAPI", "React", "Expo React Native", "Celery", "Redis", "RAG"],
   },
   {
-    slug: "ai-fitness-trainer",
-    title: "AI Fitness Trainer & Voice Assistant",
-    summary:
-      "Voice-enabled AI personal trainer and nutrition advisor using Vapi Voice AI and Google Gemini.",
-    description:
-      "An interactive voice-first health platform delivering real-time voice consultations with Vapi Voice AI and Gemini LLM. Dynamically generates tailored workout regimens and nutritional meal plans based on individual body metrics, dietary restrictions, and fitness objectives. Features real-time state synchronization with Convex and secure Clerk authentication.",
-    category: ["AI", "Full Stack", "Web"],
-    tech: [
-      "Next.js 15",
-      "TypeScript",
-      "Tailwind CSS",
-      "Gemini AI",
-      "Vapi Voice AI",
-      "Convex DB",
-      "Clerk Auth",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&q=80",
-    github: "https://github.com/Subhan696/AI-Fitness-Trainer",
-    demo: "https://ai-fitness-trainer-woad.vercel.app",
-    period: "Mar 2026",
-    highlights: [
-      "Sub-second voice conversations powered by Vapi AI and Google Gemini",
-      "Dynamic workout routine and caloric nutrition plan generator",
-      "Reactive database architecture with Convex and Clerk identity",
-    ],
-    featured: true,
+    _id: "2",
+    title: "Real-time Chat Application",
+    slug: "realtime-chat",
+    description: "A scalable real-time messaging platform with WebSocket support, featuring private chats, group channels, and message persistence.",
+    githubUrl: "https://github.com/example/realtime-chat",
+    projectUrl: "https://chat-demo.example.com",
+    technologies: ["Node.js", "Socket.io", "Redis", "PostgreSQL", "React"],
   },
   {
-    slug: "securehaven-voting",
-    title: "SecureHaven — Online Voting System",
-    summary:
-      "Cryptographically secure online voting platform with duplicate-vote prevention and real-time dashboard.",
-    description:
-      "Full-stack electronic election system designed with tamper-evident ballot integrity. Incorporates role-based access control, cryptographic bcrypt ballot hashing, JSON Web Token session security, and anti-duplicate vote constraints, providing a live real-time dashboard for instantaneous election tally monitoring.",
-    category: ["Web", "Full Stack"],
-    tech: [
-      "React.js",
-      "Express.js",
-      "Node.js",
-      "MongoDB",
-      "JWT",
-      "Bcrypt",
-      "Tailwind CSS",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=1200&q=80",
-    github: "https://github.com/Subhan696/Secure-Haven",
-    period: "Jan 2024 — May 2024",
-    highlights: [
-      "Tamper-resistant ballot storage with duplicate-vote prevention locks",
-      "Role-based access control with secure JWT auth & bcrypt encryption",
-      "Live election analytics dashboard with instant vote count updates",
-    ],
-    featured: true,
+    _id: "3",
+    title: "API Gateway Service",
+    slug: "api-gateway",
+    description: "A high-performance API gateway with rate limiting, request routing, authentication middleware, and comprehensive logging.",
+    githubUrl: "https://github.com/example/api-gateway",
+    technologies: ["Go", "gRPC", "Docker", "Prometheus", "Kubernetes"],
   },
   {
-    slug: "atg-warehouse-pos",
-    title: "ATG Warehouse Management & POS Billing",
-    summary:
-      "Offline-first cross-platform desktop application for inventory tracking, POS billing, and receipt printing.",
-    description:
-      "Desktop software developed with Electron.js and React for wholesale distribution. Supports offline-first inventory management, supplier purchase orders, point-of-sale thermal receipt generation, sales profit analytics, and automatic low-stock notifications backed by local SQLite storage.",
-    category: ["Systems", "Full Stack"],
-    tech: [
-      "Electron.js",
-      "React.js",
-      "SQLite",
-      "Node.js",
-      "IPC Architecture",
-      "Thermal Print SDK",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&q=80",
-    github: "https://github.com/Subhan696/Al-Touheed-WholeSale",
-    period: "Jun 2024 — Oct 2024",
-    highlights: [
-      "100% offline-first local database operation with zero latency",
-      "Automated thermal receipt formatting and ESC/POS printer driver support",
-      "Comprehensive inventory tracking with automated reorder alerts",
-    ],
-    featured: false,
+    _id: "4",
+    title: "Task Management CLI",
+    slug: "task-cli",
+    description: "A powerful command-line task manager with project organization, priority levels, due dates, and sync capabilities.",
+    githubUrl: "https://github.com/example/task-cli",
+    technologies: ["Rust", "SQLite", "Clap"],
   },
   {
-    slug: "logistic-mcp-server",
-    title: "Logistic MCP Server",
-    summary:
-      "Model Context Protocol (MCP) server for automated email & PDF invoice parsing and data extraction.",
-    description:
-      "Standardized Model Context Protocol server enabling LLMs to securely interact with logistics records, IMAP email inboxes, and multimodal PDF documents. Employs Prisma ORM and structured AI extraction services to parse freight invoices, reconcile billing statements, and update database registries automatically.",
-    category: ["AI", "Systems"],
-    tech: [
-      "TypeScript",
-      "Model Context Protocol (MCP)",
-      "Prisma",
-      "SQLite",
-      "Node.js",
-      "IMAP SDK",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80",
-    github: "https://github.com/Subhan696/Logistic-MCP-server",
-    period: "Feb 2026",
-    highlights: [
-      "Compliant with Anthropic Model Context Protocol (MCP) specification",
-      "Automated IMAP attachment extraction and structured LLM parsing",
-      "Prisma ORM schema with migration tracking and test suites",
-    ],
-    featured: false,
+    _id: "5",
+    title: "URL Shortener Service",
+    slug: "url-shortener",
+    description: "A distributed URL shortening service with analytics tracking, custom aliases, and expiration policies.",
+    githubUrl: "https://github.com/example/url-shortener",
+    projectUrl: "https://short.example.com",
+    technologies: ["Python", "FastAPI", "MongoDB", "Redis", "AWS Lambda"],
   },
-];
-
-export const projectCategories: (ProjectCategory | "All")[] = [
-  "All",
-  "AI",
-  "Full Stack",
-  "Web",
-  "Systems",
+  {
+    _id: "6",
+    title: "File Storage Microservice",
+    slug: "file-storage",
+    description: "A secure file storage microservice with chunked uploads, virus scanning, and multi-cloud replication support.",
+    githubUrl: "https://github.com/example/file-storage",
+    technologies: ["Java", "Spring Boot", "MinIO", "RabbitMQ", "PostgreSQL"],
+  },
+  {
+    _id: "7",
+    title: "CI/CD Pipeline Tool",
+    slug: "cicd-pipeline",
+    description: "A lightweight CI/CD automation tool with YAML configuration, parallel job execution, and integration with popular git providers.",
+    githubUrl: "https://github.com/example/cicd-pipeline",
+    technologies: ["TypeScript", "Docker", "GitHub Actions", "Bash"],
+  },
+  {
+    _id: "8",
+    title: "Distributed Cache System",
+    slug: "distributed-cache",
+    description: "An in-memory distributed cache with consistent hashing, TTL support, and automatic failover mechanisms.",
+    githubUrl: "https://github.com/example/distributed-cache",
+    technologies: ["Go", "etcd", "Protocol Buffers", "Docker"],
+  },
+  {
+    _id: "9",
+    title: "E-commerce Backend API",
+    slug: "ecommerce-api",
+    description: "A comprehensive e-commerce backend with inventory management, payment processing, and order fulfillment workflows.",
+    githubUrl: "https://github.com/example/ecommerce-api",
+    projectUrl: "https://api-docs.example.com",
+    technologies: ["Node.js", "Express", "MongoDB", "Stripe", "JWT"],
+  },
+  {
+    _id: "10",
+    title: "Log Aggregation System",
+    slug: "log-aggregator",
+    description: "A centralized logging solution with real-time log streaming, full-text search, and alerting capabilities.",
+    githubUrl: "https://github.com/example/log-aggregator",
+    technologies: ["Elasticsearch", "Logstash", "Kibana", "Filebeat", "Docker"],
+  },
 ];

@@ -1,15 +1,10 @@
-﻿export default function Loading() {
+export default function Loading() {
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="relative flex flex-col items-center gap-4">
-        <div className="relative h-16 w-16">
-          <div className="absolute inset-0 rounded-full border-2 border-ivory/10" />
-          <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-wine-600 border-r-wine-300 animate-spin" />
-          <div className="absolute inset-2 rounded-full bg-gradient-to-br from-wine-300 via-wine-600 to-wine-700 opacity-30 blur-md" />
-        </div>
-        <p className="font-mono text-xs uppercase tracking-widest text-ivory/60">
-          Loading
-        </p>
+    <div className="flex min-h-[60vh] items-center justify-center">
+      <div className="flex items-center gap-2">
+        <div className="h-2 w-2 rounded-full bg-black dark:bg-white animate-pulse" />
+        <div className="h-2 w-2 rounded-full bg-black dark:bg-white animate-pulse [animation-delay:0.2s]" />
+        <div className="h-2 w-2 rounded-full bg-black dark:bg-white animate-pulse [animation-delay:0.4s]" />
       </div>
     </div>
   );

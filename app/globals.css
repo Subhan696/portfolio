@@ -1,116 +1,147 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 224 35% 5%;        /* #08090D deep obsidian */
-    --foreground: 210 40% 98%;       /* #F8FAFC */
-    --card: 222 35% 8%;              /* #0C101A */
-    --card-foreground: 210 40% 98%;
-    --primary: 199 89% 48%;          /* #0EA5E9 Sky */
-    --primary-foreground: 224 35% 5%;
-    --secondary: 222 30% 12%;
-    --secondary-foreground: 210 40% 90%;
-    --muted: 222 30% 12%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 222 30% 16%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 75% 55%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 222 25% 15%;
-    --input: 222 25% 15%;
-    --ring: 199 89% 48%;
-    --radius: 0.5rem;
-  }
+@custom-variant dark (&:where(.dark, .dark *));
 
-  * {
-    @apply border-border;
-  }
+@theme {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif), ui-serif, Georgia, serif;
+  --font-urdu: "Jameel Noori Nastaleeq", "Noto Nastaliq Urdu", "Noto Naskh Arabic", "Urdu Typesetting", "Nafees Nastaleeq", "Segoe UI", Tahoma, sans-serif;
+}
 
-  html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-    -webkit-text-size-adjust: 100%;
-    background-color: #08090D;
-    color-scheme: dark;
-  }
+body {
+  font-family: var(--font-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
 
-  body {
-    background-color: #08090D;
-    color: #F8FAFC;
-    font-feature-settings: "rlig" 1, "calt" 1;
-    overflow-x: hidden;
-    -webkit-tap-highlight-color: transparent;
-  }
+[lang="ur"] {
+  font-family: var(--font-urdu);
+  line-height: 1.85;
+}
 
-  ::selection {
-    background: rgba(56, 189, 248, 0.25);
-    color: #38bdf8;
-  }
+[lang="ur"] .font-sans,
+[lang="ur"] .font-serif,
+[lang="ur"] .font-mono {
+  font-family: var(--font-urdu);
+}
 
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+[lang="ur"] h1,
+[lang="ur"] h2,
+[lang="ur"] h3,
+[lang="ur"] h4 {
+  line-height: 1.65;
+}
+
+[lang="ur"] p,
+[lang="ur"] li,
+[lang="ur"] input,
+[lang="ur"] textarea,
+[lang="ur"] button {
+  line-height: 1.9;
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
   }
-  ::-webkit-scrollbar-track {
-    background: #08090D;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(56, 189, 248, 0.4);
+  100% {
+    transform: translateX(-50%);
   }
 }
 
-@layer components {
-  /* Underline-style input */
-  .input-underline {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 0;
-    padding: 0.6rem 0;
-    width: 100%;
-    color: #F8FAFC;
-    outline: none;
-    transition: border-color 0.2s;
-    font-size: 0.875rem;
-  }
-  .input-underline::placeholder {
-    color: rgba(255, 255, 255, 0.35);
-  }
-  .input-underline:focus {
-    border-bottom-color: #38bdf8;
-  }
-
-  /* Section heading */
-  .section-heading {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: #F8FAFC;
-    margin-bottom: 1.5rem;
-  }
-
-  /* Hairline divider */
-  .hairline {
-    height: 1px;
-    background: rgba(255, 255, 255, 0.08);
-  }
+.animate-infinite-scroll {
+  animation: infinite-scroll 20s linear infinite;
 }
 
-@layer utilities {
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass-card {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.github-tooltip {
+  position: fixed;
+  background: white;
+  border: 1px solid rgb(208 215 222);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+.dark .github-tooltip {
+  background: black;
+  border-color: rgb(48 54 61);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.github-graph-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.github-scroll-container {
+  width: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.github-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Intro Gateway Styles */
+.hud-bracket-tl,
+.hud-bracket-tr,
+.hud-bracket-bl,
+.hud-bracket-br {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: rgba(0, 0, 0, 0.4);
+  border-style: solid;
+}
+
+.hud-bracket-tl {
+  top: -2px;
+  left: -2px;
+  border-width: 2px 0 0 2px;
+}
+
+.hud-bracket-tr {
+  top: -2px;
+  right: -2px;
+  border-width: 2px 2px 0 0;
+}
+
+.hud-bracket-bl {
+  bottom: -2px;
+  left: -2px;
+  border-width: 0 0 2px 2px;
+}
+
+.hud-bracket-br {
+  bottom: -2px;
+  right: -2px;
+  border-width: 0 2px 2px 0;
+}
+
+/* Sound Equalizer Animation */
+@keyframes equalizer {
+  0%, 100% { height: 4px; }
+  25% { height: 16px; }
+  50% { height: 8px; }
+  75% { height: 14px; }
+}
+
+.animate-equalizer {
+  animation: equalizer 1s ease-in-out infinite;
 }
