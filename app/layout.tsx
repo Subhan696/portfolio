@@ -7,6 +7,7 @@ import { SmoothScroll } from '@/components/SmoothScroll'
 import { IntroGateway } from '@/components/effects/intro-gateway'
 import { SoundEqualizer } from '@/components/effects/sound-equalizer'
 import { ThemeProvider } from 'next-themes'
+import { Starfield } from '@/components/effects/starfield'
 import './globals.css'
 
 const dmSans = DM_Sans({
@@ -31,9 +32,13 @@ const signifier = localFont({
 
 export const metadata: Metadata = {
   title: 'Subhan Kashif — AI Engineer & Full Stack Developer',
-  description: 'Personal portfolio of Subhan Kashif — Building intelligent systems for language, automation, and the web.',
+  description: 'Personal portfolio of Subhan Kashif — Architecting intelligent AI agents, production systems, and full-stack software.',
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon.png', type: 'image/png' },
+    ],
+    apple: '/favicon.png',
   },
 }
 
@@ -44,12 +49,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark" style={{ colorScheme: 'dark' }} suppressHydrationWarning>
-      <body className={`${dmSans.variable} ${signifier.variable} font-sans antialiased bg-black text-white dark:bg-black dark:text-white`}>
+      <body className={`${dmSans.variable} ${signifier.variable} font-sans antialiased bg-black text-white dark:bg-black dark:text-white relative`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          {/* Cosmic Starfield Background */}
+          <Starfield />
+
           {/* Let's Go Interactive Intro Gateway */}
           <IntroGateway />
 
-          <div className="selection:bg-white selection:text-black dark:selection:bg-white dark:selection:text-black">
+          <div className="selection:bg-white selection:text-black dark:selection:bg-white dark:selection:text-black relative z-10">
             <SmoothScroll />
             <AutoScroll />
             <div className="w-full md:w-[50%] min-h-screen flex flex-col p-6 lg:p-12 relative mx-auto">

@@ -3,6 +3,7 @@ import { experiences } from '@/data/experience'
 import { getProjects } from '@/lib/projects'
 import { GithubGraph } from '@/components/GithubGraph'
 import { TechStack } from '@/components/TechStack'
+import { LiveBuilds } from '@/components/LiveBuilds'
 import { ExperienceItem } from '@/components/ExperienceItem'
 import { ProjectsList } from '@/components/ProjectsList'
 import { ContactForm } from '@/components/ContactForm'
@@ -16,7 +17,7 @@ export default async function Home() {
   const projects = await getProjects()
 
   return (
-    <main className="min-h-screen bg-black text-white dark:bg-black dark:text-white selection:bg-white selection:text-black">
+    <main className="min-h-screen bg-transparent text-white dark:bg-transparent dark:text-white selection:bg-white selection:text-black relative">
       <ScrollAnimation delay={0} animation="fade-up">
         <section className="mb-12 flex flex-col justify-center mt-2">
           <div className="max-w-xl">
@@ -24,19 +25,12 @@ export default async function Home() {
               Full-Stack &amp; Machine Learning Engineer
             </p>
             <h1 className="font-serif text-[2.15rem] font-medium leading-[1.1] tracking-tight mb-6 text-balance md:text-[2.6rem] lg:text-[3rem]">
-              Building intelligent systems for language, automation, and the web.
+              {profile.headline}
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-6 text-pretty max-w-lg">
-              I work across machine learning, backend systems, and frontend development to build practical AI-powered software with clean architecture and thoughtful user experiences.
+              {profile.shortBio}
             </p>
           </div>
-        </section>
-      </ScrollAnimation>
-
-      <ScrollAnimation delay={0.1} animation="fade-up">
-        <section className="mb-12 pt-0 pb-6">
-          <h2 className="font-serif text-2xl md:text-3xl mb-8 tracking-tight">GitHub Contributions</h2>
-          <GithubGraph />
         </section>
       </ScrollAnimation>
 
@@ -88,9 +82,26 @@ export default async function Home() {
       </ScrollAnimation>
 
       <ScrollAnimation delay={0.1} animation="fade-up">
+        <section id="live-builds" className="mb-12 pt-0 pb-6">
+          <div className="mb-8 flex items-baseline justify-between">
+            <h2 className="font-serif text-2xl md:text-3xl tracking-tight">Live Builds</h2>
+            <span className="font-mono text-xs text-gray-500">production &amp; live demos</span>
+          </div>
+          <LiveBuilds />
+        </section>
+      </ScrollAnimation>
+
+      <ScrollAnimation delay={0.1} animation="fade-up">
         <section id="projects" className="mb-12 pt-0 pb-6">
           <h2 className="font-serif text-2xl md:text-3xl mb-8 tracking-tight">Projects</h2>
           <ProjectsList projects={projects} />
+        </section>
+      </ScrollAnimation>
+
+      <ScrollAnimation delay={0.1} animation="fade-up">
+        <section id="github" className="mb-12 pt-0 pb-6">
+          <h2 className="font-serif text-2xl md:text-3xl mb-8 tracking-tight">GitHub Contributions</h2>
+          <GithubGraph />
         </section>
       </ScrollAnimation>
 

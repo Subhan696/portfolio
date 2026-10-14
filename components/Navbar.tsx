@@ -54,6 +54,7 @@ export function Navbar() {
       </div>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-mono">
         <a href={buildSectionPath()} onClick={(e) => handleScroll(e, 'top', buildSectionPath())} className={getLinkClass(pathname === '/')}>Home</a>
+        <a href={buildSectionPath('live-builds')} onClick={(e) => handleScroll(e, 'live-builds', buildSectionPath('live-builds'))} className={getLinkClass(false)}>Live Builds</a>
         <a href={buildSectionPath('projects')} onClick={(e) => handleScroll(e, 'projects', buildSectionPath('projects'))} className={getLinkClass(false)}>Projects</a>
         <a href={buildSectionPath('experience')} onClick={(e) => handleScroll(e, 'experience', buildSectionPath('experience'))} className={getLinkClass(false)}>Experience</a>
         <a href={buildSectionPath('contact')} onClick={(e) => handleScroll(e, 'contact', buildSectionPath('contact'))} className={getLinkClass(false)}>Contact</a>

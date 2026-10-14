@@ -90,6 +90,12 @@ const categoryNames: Record<string, string> = {
   infra: "DevOps & Tools",
 };
 
+function getSkillIconSrc(slug: string): string {
+  if (slug === "openai") return "/icons/openai.svg";
+  if (slug === "pinecone") return "/icons/pinecone.svg";
+  return `https://cdn.simpleicons.org/${slug}`;
+}
+
 export function TechStack() {
   const [isExpanded, setIsExpanded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -138,10 +144,10 @@ export function TechStack() {
                     >
                       <div className="h-3.5 w-3.5 shrink-0 transition-opacity">
                         <img
-                          src={`https://cdn.simpleicons.org/${skill.slug}`}
+                          src={getSkillIconSrc(skill.slug)}
                           alt={skill.name}
                           className={
-                            skill.color === "#fff"
+                            skill.color === "#fff" || skill.slug === "openai" || skill.slug === "pinecone"
                               ? "h-full w-full object-contain opacity-50 group-hover:opacity-80 transition-opacity brightness-0 dark:brightness-0 dark:invert"
                               : "h-full w-full object-contain opacity-50 group-hover:opacity-80 transition-opacity brightness-0 group-hover:brightness-100 dark:brightness-0 dark:invert dark:group-hover:invert-0 dark:group-hover:brightness-100"
                           }
@@ -197,10 +203,10 @@ export function TechStack() {
                             >
                               <div className="h-4 w-4 shrink-0 transition-all duration-300">
                                 <img
-                                  src={`https://cdn.simpleicons.org/${skill.slug}`}
+                                  src={getSkillIconSrc(skill.slug)}
                                   alt={skill.name}
                                   className={
-                                    skill.color === "#fff"
+                                    skill.color === "#fff" || skill.slug === "openai" || skill.slug === "pinecone"
                                       ? "h-full w-full object-contain opacity-50 group-hover:opacity-100 transition-all duration-300 brightness-0 dark:brightness-0 dark:invert"
                                       : "h-full w-full object-contain opacity-50 group-hover:opacity-100 transition-all duration-300 brightness-0 group-hover:brightness-100 dark:brightness-0 dark:invert dark:group-hover:invert-0 dark:group-hover:brightness-100"
                                   }

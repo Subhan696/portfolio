@@ -1,6 +1,6 @@
 export const profile = {
   name: "Subhan Kashif",
-  headline: "Building intelligent systems for language, automation, and the web.",
+  headline: "Architecting intelligent AI agents, production systems, and full-stack software.",
   shortBio: "I work across machine learning, backend systems, and frontend development to build practical AI-powered software with clean architecture and thoughtful user experiences.",
   email: "subhankashif696@gmail.com",
   githubUrl: "https://github.com/Subhan696",

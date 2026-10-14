@@ -2,7 +2,7 @@ export type Locale = 'en'
 
 export const defaultLocale: Locale = 'en'
 
-export const sectionSlugs = ['projects', 'experience', 'contact', 'resume'] as const
+export const sectionSlugs = ['live-builds', 'projects', 'experience', 'contact', 'resume'] as const
 
 export type SectionSlug = (typeof sectionSlugs)[number]
 
