@@ -57,6 +57,7 @@ export function Navbar() {
         <a href={buildSectionPath('live-builds')} onClick={(e) => handleScroll(e, 'live-builds', buildSectionPath('live-builds'))} className={getLinkClass(false)}>Live Builds</a>
         <a href={buildSectionPath('projects')} onClick={(e) => handleScroll(e, 'projects', buildSectionPath('projects'))} className={getLinkClass(false)}>Projects</a>
         <a href={buildSectionPath('experience')} onClick={(e) => handleScroll(e, 'experience', buildSectionPath('experience'))} className={getLinkClass(false)}>Experience</a>
+        <a href={buildSectionPath('education')} onClick={(e) => handleScroll(e, 'education', buildSectionPath('education'))} className={getLinkClass(false)}>Education</a>
         <a href={buildSectionPath('contact')} onClick={(e) => handleScroll(e, 'contact', buildSectionPath('contact'))} className={getLinkClass(false)}>Contact</a>
         <a href={buildSectionPath('resume')} onClick={(e) => handleScroll(e, 'resume', buildSectionPath('resume'))} className={getLinkClass(false)}>Resume</a>
       </div>

@@ -1,5 +1,6 @@
 import { profile as FALLBACK_PROFILE } from '@/data/profile'
 import { experiences } from '@/data/experience'
+import { educationHistory } from '@/data/education'
 import { getProjects } from '@/lib/projects'
 import { GithubGraph } from '@/components/GithubGraph'
 import { TechStack } from '@/components/TechStack'
@@ -75,6 +76,54 @@ export default async function Home() {
                     </HoverBorderGradient>
                   ))}
                 </div>
+              </ExperienceItem>
+            ))}
+          </div>
+        </section>
+      </ScrollAnimation>
+
+      <ScrollAnimation delay={0.1} animation="fade-up">
+        <section id="education" className="mb-12 pt-0 pb-6">
+          <h2 className="font-serif text-2xl md:text-3xl mb-8 tracking-tight">Education</h2>
+          <div className="space-y-12">
+            {educationHistory.map((edu) => (
+              <ExperienceItem
+                key={`${edu.institution}-${edu.period}`}
+                title={edu.degree}
+                role={`${edu.institution} (${edu.period})`}
+                collapsible={false}
+              >
+                {edu.description && (
+                  <p className="text-gray-600 dark:text-gray-400 mb-3 text-sm leading-relaxed">
+                    {edu.description}
+                  </p>
+                )}
+
+                {edu.grade && (
+                  <p className="text-xs font-mono text-gray-500 dark:text-gray-400 mb-3">
+                    <span className="text-gray-700 dark:text-gray-300 font-medium">Standing / Grade:</span>{' '}
+                    {edu.grade}
+                  </p>
+                )}
+
+                {edu.coursework && edu.coursework.length > 0 && (
+                  <div className="mt-4">
+                    <p className="text-xs font-mono text-gray-500 dark:text-gray-400 mb-2">Key Coursework:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {edu.coursework.map((course) => (
+                        <HoverBorderGradient
+                          key={course}
+                          as="span"
+                          containerClassName="rounded-full"
+                          className="px-2 py-0.5 text-[10px] font-mono"
+                          duration={1.5}
+                        >
+                          {course}
+                        </HoverBorderGradient>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </ExperienceItem>
             ))}
           </div>
