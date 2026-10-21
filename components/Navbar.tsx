@@ -2,12 +2,26 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
 import { ThemeToggle } from './ThemeToggle'
 import { buildSectionPath, getSectionFromPathname, isDetailPath, type SectionSlug } from '@/lib/site-routing'
+import { useIntro } from './effects/intro-context'
+import { scrollToTarget } from '@/lib/lenis-scroll'
+
+const NAV_LINKS = [
+  { label: 'Home', slug: 'top' as const, path: buildSectionPath() },
+  { label: 'Live Builds', slug: 'live-builds' as const, path: buildSectionPath('live-builds') },
+  { label: 'Projects', slug: 'projects' as const, path: buildSectionPath('projects') },
+  { label: 'Experience', slug: 'experience' as const, path: buildSectionPath('experience') },
+  { label: 'Education', slug: 'education' as const, path: buildSectionPath('education') },
+  { label: 'Contact', slug: 'contact' as const, path: buildSectionPath('contact') },
+  { label: 'Resume', slug: 'resume' as const, path: buildSectionPath('resume') },
+]
 
 export function Navbar() {
   const pathname = usePathname()
   const router = useRouter()
+  const { isLaunched } = useIntro()
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: SectionSlug | 'top', urlPath: string) => {
     e.preventDefault()
@@ -20,17 +34,18 @@ export function Navbar() {
       return
     }
 
+    if (targetId === 'top') {
+      scrollToTarget(0, { duration: 1.4 })
+      window.history.pushState(null, '', urlPath)
+      return
+    }
+
     const target = document.getElementById(targetId)
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' })
+      scrollToTarget(target, { offset: -30, duration: 1.4 })
       window.history.pushState(null, '', urlPath)
     } else {
-      if (targetId === 'top') {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-        window.history.pushState(null, '', urlPath)
-      } else {
-        router.push(urlPath)
-      }
+      router.push(urlPath)
     }
   }
 
@@ -40,27 +55,57 @@ export function Navbar() {
 
   return (
     <header className="-mx-6 -mt-6 mb-10 flex flex-col gap-5 bg-transparent px-6 pt-4 pb-3 lg:-mx-12 lg:-mt-12 lg:px-12 lg:pt-6 lg:pb-4">
-      <div className="flex items-center justify-between gap-3 pe-36 sm:pe-44">
+      {/* Brand Title: Subhan Kashif - Significantly Bigger with Spaceship Outer-to-Inner Arrival Effect */}
+      <div className="flex items-center justify-between gap-3 pe-24 sm:pe-28">
         <span data-state="closed" className="min-w-0 flex-1">
-          <Link className="block truncate text-lg sm:text-xl md:text-2xl font-serif tracking-tight" href="/">
-            Subhan Kashif
-          </Link>
+          <motion.div
+            initial={{ scale: 2.4, opacity: 0, filter: "blur(20px)", y: -30 }}
+            animate={isLaunched ? { scale: 1, opacity: 1, filter: "blur(0px)", y: 0 } : { scale: 2.4, opacity: 0, filter: "blur(20px)", y: -30 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+          >
+            <Link 
+              className="inline-block text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-bold tracking-tight text-white hover:opacity-90 transition-opacity leading-none py-1" 
+              href="/"
+            >
+              Subhan Kashif
+            </Link>
+          </motion.div>
         </span>
       </div>
+
+      {/* Floating Theme Toggle */}
       <div className="pointer-events-none fixed inset-x-0 top-4 z-50 mx-auto flex w-full justify-end px-6 md:w-[50%] lg:top-6 lg:px-12">
         <div className="pointer-events-auto">
           <ThemeToggle />
         </div>
       </div>
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-mono">
-        <a href={buildSectionPath()} onClick={(e) => handleScroll(e, 'top', buildSectionPath())} className={getLinkClass(pathname === '/')}>Home</a>
-        <a href={buildSectionPath('live-builds')} onClick={(e) => handleScroll(e, 'live-builds', buildSectionPath('live-builds'))} className={getLinkClass(false)}>Live Builds</a>
-        <a href={buildSectionPath('projects')} onClick={(e) => handleScroll(e, 'projects', buildSectionPath('projects'))} className={getLinkClass(false)}>Projects</a>
-        <a href={buildSectionPath('experience')} onClick={(e) => handleScroll(e, 'experience', buildSectionPath('experience'))} className={getLinkClass(false)}>Experience</a>
-        <a href={buildSectionPath('education')} onClick={(e) => handleScroll(e, 'education', buildSectionPath('education'))} className={getLinkClass(false)}>Education</a>
-        <a href={buildSectionPath('contact')} onClick={(e) => handleScroll(e, 'contact', buildSectionPath('contact'))} className={getLinkClass(false)}>Contact</a>
-        <a href={buildSectionPath('resume')} onClick={(e) => handleScroll(e, 'resume', buildSectionPath('resume'))} className={getLinkClass(false)}>Resume</a>
-      </div>
+
+      {/* Navigation Links with Staggered Outer-to-Inner Spaceship Arrival */}
+      <nav className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-mono">
+        {NAV_LINKS.map((link, idx) => {
+          const isActive = (link.slug === 'top' && pathname === '/') || pathname === `/${link.slug}`
+          return (
+            <motion.div
+              key={link.slug}
+              initial={{ scale: 1.9, opacity: 0, filter: "blur(12px)", y: -15 }}
+              animate={isLaunched ? { scale: 1, opacity: 1, filter: "blur(0px)", y: 0 } : { scale: 1.9, opacity: 0, filter: "blur(12px)", y: -15 }}
+              transition={{
+                duration: 0.85,
+                delay: 0.15 + idx * 0.04,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
+              <a
+                href={link.path}
+                onClick={(e) => handleScroll(e, link.slug, link.path)}
+                className={getLinkClass(isActive)}
+              >
+                {link.label}
+              </a>
+            </motion.div>
+          )
+        })}
+      </nav>
     </header>
   )
 }

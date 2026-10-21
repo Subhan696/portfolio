@@ -153,37 +153,74 @@ class AudioEngine {
     });
   }
 
-  // Gateway Enter SFX
+  // Spaceship Thruster & Warp Jump SFX
   public playGatewaySound() {
     this.init();
     if (!this.ctx || !this.masterGain || this.muted) return;
     const t = this.ctx.currentTime;
 
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    const filter = this.ctx.createBiquadFilter();
+    try {
+      // 1. Low-frequency thruster roar / engine buildup (sawtooth lowpass)
+      const subOsc = this.ctx.createOscillator();
+      const subGain = this.ctx.createGain();
+      const subFilter = this.ctx.createBiquadFilter();
 
-    osc.type = "sawtooth";
-    osc.frequency.setValueAtTime(110, t);
-    osc.frequency.exponentialRampToValueAtTime(880, t + 0.6);
-    osc.frequency.exponentialRampToValueAtTime(220, t + 1.2);
+      subOsc.type = "sawtooth";
+      subOsc.frequency.setValueAtTime(45, t);
+      subOsc.frequency.exponentialRampToValueAtTime(110, t + 0.4);
+      subOsc.frequency.exponentialRampToValueAtTime(32, t + 1.4);
 
-    filter.type = "bandpass";
-    filter.frequency.setValueAtTime(400, t);
-    filter.frequency.exponentialRampToValueAtTime(2500, t + 0.5);
-    filter.frequency.exponentialRampToValueAtTime(600, t + 1.2);
-    filter.Q.setValueAtTime(6, t);
+      subFilter.type = "lowpass";
+      subFilter.frequency.setValueAtTime(180, t);
+      subFilter.frequency.exponentialRampToValueAtTime(360, t + 0.5);
+      subFilter.frequency.exponentialRampToValueAtTime(60, t + 1.4);
 
-    gain.gain.setValueAtTime(0.01, t);
-    gain.gain.linearRampToValueAtTime(0.2, t + 0.2);
-    gain.gain.exponentialRampToValueAtTime(0.001, t + 1.2);
+      subGain.gain.setValueAtTime(0.001, t);
+      subGain.gain.linearRampToValueAtTime(0.24, t + 0.2);
+      subGain.gain.exponentialRampToValueAtTime(0.001, t + 1.4);
 
-    osc.connect(filter);
-    filter.connect(gain);
-    gain.connect(this.masterGain);
+      subOsc.connect(subFilter);
+      subFilter.connect(subGain);
+      subGain.connect(this.masterGain);
+      subOsc.start(t);
+      subOsc.stop(t + 1.45);
 
-    osc.start(t);
-    osc.stop(t + 1.2);
+      // 2. High-Tech Warp Capacitor Pitch Rise (sine wave sweeping 200Hz -> 2000Hz)
+      const warpOsc = this.ctx.createOscillator();
+      const warpGain = this.ctx.createGain();
+
+      warpOsc.type = "sine";
+      warpOsc.frequency.setValueAtTime(180, t);
+      warpOsc.frequency.exponentialRampToValueAtTime(2200, t + 0.85);
+
+      warpGain.gain.setValueAtTime(0.001, t);
+      warpGain.gain.linearRampToValueAtTime(0.12, t + 0.6);
+      warpGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.9);
+
+      warpOsc.connect(warpGain);
+      warpGain.connect(this.masterGain);
+      warpOsc.start(t);
+      warpOsc.stop(t + 0.95);
+
+      // 3. Hyperspace Sonic Boom & Atmospheric Dissipation (at t + 0.85s)
+      const boomT = t + 0.85;
+      const boomOsc = this.ctx.createOscillator();
+      const boomGain = this.ctx.createGain();
+
+      boomOsc.type = "triangle";
+      boomOsc.frequency.setValueAtTime(130, boomT);
+      boomOsc.frequency.exponentialRampToValueAtTime(30, boomT + 0.8);
+
+      boomGain.gain.setValueAtTime(0.3, boomT);
+      boomGain.gain.exponentialRampToValueAtTime(0.001, boomT + 0.85);
+
+      boomOsc.connect(boomGain);
+      boomGain.connect(this.masterGain);
+      boomOsc.start(boomT);
+      boomOsc.stop(boomT + 0.9);
+    } catch {
+      // Safe fallback
+    }
   }
 
   // UI Hover Micro-Sound

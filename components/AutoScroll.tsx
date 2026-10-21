@@ -3,25 +3,26 @@
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { getSectionFromPathname } from '@/lib/site-routing'
+import { scrollToTarget } from '@/lib/lenis-scroll'
 
 export function AutoScroll() {
-    const pathname = usePathname()
+  const pathname = usePathname()
 
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            const section = getSectionFromPathname(pathname)
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      const section = getSectionFromPathname(pathname)
 
-            if (section) {
-                document.getElementById(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                return
-            }
+      if (section) {
+        scrollToTarget(section, { offset: -30, duration: 1.3 })
+        return
+      }
 
-            if (pathname === '/') {
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-            }
-        }, 100);
-        return () => clearTimeout(timeoutId);
-    }, [pathname])
+      if (pathname === '/') {
+        scrollToTarget(0, { duration: 1.3 })
+      }
+    }, 100)
+    return () => clearTimeout(timeoutId)
+  }, [pathname])
 
-    return null
+  return null
 }

@@ -12,6 +12,7 @@ import { SiteFooter } from '@/components/SiteFooter'
 import { ScrollAnimation } from '@/components/ScrollAnimation'
 import { Download } from 'lucide-react'
 import { HoverBorderGradient } from '@/components/ui/hover-border-gradient'
+import { HeroOuterToInner } from '@/components/effects/hero-outer-to-inner'
 
 export default async function Home() {
   const profile = FALLBACK_PROFILE
@@ -19,21 +20,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-transparent text-white dark:bg-transparent dark:text-white selection:bg-white selection:text-black relative">
-      <ScrollAnimation delay={0} animation="fade-up">
-        <section className="mb-12 flex flex-col justify-center mt-2">
-          <div className="max-w-xl">
-            <p className="mb-4 font-mono text-sm text-gray-500 dark:text-gray-400 md:text-base">
-              Full-Stack &amp; Machine Learning Engineer
-            </p>
-            <h1 className="font-serif text-[2.15rem] font-medium leading-[1.1] tracking-tight mb-6 text-balance md:text-[2.6rem] lg:text-[3rem]">
-              {profile.headline}
-            </h1>
-            <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-6 text-pretty max-w-lg">
-              {profile.shortBio}
-            </p>
-          </div>
-        </section>
-      </ScrollAnimation>
+      <HeroOuterToInner headline={profile.headline} bio={profile.shortBio} />
 
       <ScrollAnimation delay={0.1} animation="fade-up">
         <section className="mb-12 pt-0 pb-6">
