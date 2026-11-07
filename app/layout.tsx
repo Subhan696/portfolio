@@ -59,10 +59,10 @@ export default function RootLayout({
             {/* Spaceship Launch Interactive Intro Gateway */}
             <IntroGateway />
 
-            <div className="selection:bg-white selection:text-black dark:selection:bg-white dark:selection:text-black relative z-10">
+            <div className="selection:bg-white selection:text-black dark:selection:bg-white dark:selection:text-black relative z-10 w-full max-w-full overflow-x-clip">
               <SmoothScroll />
               <AutoScroll />
-              <div className="w-full md:w-[50%] min-h-screen flex flex-col p-6 lg:p-12 relative mx-auto">
+              <div className="w-full md:w-[50%] min-h-screen flex flex-col p-6 lg:p-12 relative mx-auto max-w-full overflow-x-clip">
                 <Navbar />
                 {children}
               </div>

@@ -8,6 +8,12 @@
   --font-urdu: "Jameel Noori Nastaleeq", "Noto Nastaliq Urdu", "Noto Naskh Arabic", "Urdu Typesetting", "Nafees Nastaleeq", "Segoe UI", Tahoma, sans-serif;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 body {
   font-family: var(--font-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -30,6 +36,12 @@ html.lenis, html.lenis body {
 }
 .lenis.lenis-smooth iframe {
   pointer-events: none;
+}
+
+/* GPU Rendering & Layout Optimizations for Non-Dedicated GPUs */
+section[id] {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
 }
 
 [lang="ur"] {

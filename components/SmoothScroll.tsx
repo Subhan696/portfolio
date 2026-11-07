@@ -6,15 +6,15 @@ import { setLenis } from '@/lib/lenis-scroll'
 
 export function SmoothScroll() {
   useEffect(() => {
-    // Ultra-smooth momentum scrolling configuration
+    // High-performance smooth scrolling optimized for all GPUs (including integrated Intel graphics)
     const lenis = new Lenis({
-      lerp: 0.08, // Buttery smooth momentum lerp (glide feeling)
-      duration: 1.4, // Luxuriously smooth duration
+      lerp: 0.1, // Snappy, low-overhead momentum lerp
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.92, // Avoid abrupt jumps
+      wheelMultiplier: 0.95,
       touchMultiplier: 1.5,
       infinite: false,
     })

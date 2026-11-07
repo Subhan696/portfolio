@@ -56,15 +56,16 @@ export function Navbar() {
   return (
     <header className="-mx-6 -mt-6 mb-10 flex flex-col gap-5 bg-transparent px-6 pt-4 pb-3 lg:-mx-12 lg:-mt-12 lg:px-12 lg:pt-6 lg:pb-4">
       {/* Brand Title: Subhan Kashif - Significantly Bigger with Spaceship Outer-to-Inner Arrival Effect */}
-      <div className="flex items-center justify-between gap-3 pe-24 sm:pe-28">
+      <div className="flex items-center justify-between gap-3 pe-14 sm:pe-24">
         <span data-state="closed" className="min-w-0 flex-1">
           <motion.div
-            initial={{ scale: 2.4, opacity: 0, filter: "blur(20px)", y: -30 }}
-            animate={isLaunched ? { scale: 1, opacity: 1, filter: "blur(0px)", y: 0 } : { scale: 2.4, opacity: 0, filter: "blur(20px)", y: -30 }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+            style={{ transformOrigin: "left center", willChange: "transform, opacity" }}
+            initial={{ scale: 1.7, opacity: 0, y: -20 }}
+            animate={isLaunched ? { scale: 1, opacity: 1, y: 0 } : { scale: 1.7, opacity: 0, y: -20 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.04 }}
           >
             <Link 
-              className="inline-block text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-bold tracking-tight text-white hover:opacity-90 transition-opacity leading-none py-1" 
+              className="inline-block text-[1.85rem] sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-bold tracking-tight text-white hover:opacity-90 transition-opacity leading-none py-1" 
               href="/"
             >
               Subhan Kashif
@@ -87,11 +88,12 @@ export function Navbar() {
           return (
             <motion.div
               key={link.slug}
-              initial={{ scale: 1.9, opacity: 0, filter: "blur(12px)", y: -15 }}
-              animate={isLaunched ? { scale: 1, opacity: 1, filter: "blur(0px)", y: 0 } : { scale: 1.9, opacity: 0, filter: "blur(12px)", y: -15 }}
+              style={{ willChange: "transform, opacity" }}
+              initial={{ scale: 1.35, opacity: 0, y: -10 }}
+              animate={isLaunched ? { scale: 1, opacity: 1, y: 0 } : { scale: 1.35, opacity: 0, y: -10 }}
               transition={{
-                duration: 0.85,
-                delay: 0.15 + idx * 0.04,
+                duration: 0.65,
+                delay: 0.08 + idx * 0.03,
                 ease: [0.16, 1, 0.3, 1],
               }}
             >

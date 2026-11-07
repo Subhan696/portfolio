@@ -3,6 +3,9 @@ import type Lenis from 'lenis'
 export function setLenis(lenis: Lenis | null) {
   if (typeof window !== 'undefined') {
     (window as unknown as { __lenis_instance?: Lenis | null }).__lenis_instance = lenis
+    if (lenis && document.body.style.overflow === 'hidden') {
+      lenis.stop()
+    }
   }
 }
 
@@ -11,6 +14,16 @@ export function getLenis(): Lenis | null {
     return (window as unknown as { __lenis_instance?: Lenis | null }).__lenis_instance || null
   }
   return null
+}
+
+export function pauseLenis() {
+  const lenis = getLenis()
+  lenis?.stop()
+}
+
+export function resumeLenis() {
+  const lenis = getLenis()
+  lenis?.start()
 }
 
 export function scrollToTarget(
